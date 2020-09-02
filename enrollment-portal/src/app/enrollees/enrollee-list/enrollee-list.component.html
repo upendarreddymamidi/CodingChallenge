@@ -1,0 +1,36 @@
+<h3>LIST OF ENROLLEES</h3>
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="w-300" mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let enrollee"> {{enrollee.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="w-150" mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let enrollee"> {{enrollee.name}} </mat-cell>
+    </ng-container>
+  
+    <!-- Date of Birth Column -->
+    <ng-container matColumnDef="dateOfBirth">
+      <mat-header-cell *matHeaderCellDef class="w-150" mat-sort-header> Date of Birth </mat-header-cell>
+      <mat-cell *matCellDef="let enrollee"> {{enrollee.dateOfBirth | date: 'longDate'}} </mat-cell>
+    </ng-container>
+  
+    <!-- Enrollment Status Column -->
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef class="w-40" mat-sort-header> Enrollment Status </mat-header-cell>
+      <mat-cell *matCellDef="let enrollee"> {{enrollee.active ? 'Active' : 'Inactive'}} </mat-cell>
+    </ng-container>
+  
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="w-40"> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let enrollee"> <a [routerLink]="['/enrollee/', enrollee.id]" routerLinkActive="active">Edit</a> </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" pageSize="10" showFirstLastButtons></mat-paginator>

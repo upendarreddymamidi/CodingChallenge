@@ -1,0 +1,78 @@
+<style>
+  h1 {
+    margin: 8px 0;
+	color:blue;
+	text-align:center;
+  }
+
+
+  input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+.button:hover {
+  background-color: black;
+  color: white;
+}
+    .button1 {padding: 10px 24px;
+	 background-color: #4CAF50; }
+	  .button2 {padding: 10px 24px;
+	 background-color: blue; }
+	 
+	 .labelname{
+	 padding-right:  40px;
+	 }
+	 div {
+  background-color: lightblue;
+}
+
+</style>
+
+<h1 class="edit">Edit Enrollee Info </h1>
+<div *ngIf="enrolleeInfo; else noInfo">
+    <form #enrolleeEditForm="ngForm" (ngSubmit)="submitEnrollee(enrolleeEditForm.form);">
+        <label class="labelname" for="name">Name:</label>
+        <input type="text" 
+           class="form-control" 
+           name="name"
+           ngModel
+           [(ngModel)]="enrolleeInfo.name"
+           required>
+           <br>
+        <label for="dateOfBirth">Date of Birth: </label>
+        <input type="text" 
+           class="form-control" 
+           name="dateOfBirth"
+           [(ngModel)]="enrolleeInfo.dateOfBirth"
+           required>
+        <br>
+		 <br>
+        <h4>
+		Enrollment Status: {{enrolleeInfo.active ? 'Active' : 'Inactive'}}
+		</h4>		
+		<br>
+         <h4>ID: {{enrolleeInfo.id}}</h4>
+		 <br>
+        <div>
+            <button class="button button1" [disabled]="!enrolleeEditForm.valid">Submit</button>
+            <button class="button button2"  (click)="cancelEdit()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #noInfo>Failed to load Enrollee information. <a [routerLink]="['']">Click here to go back</a></ng-template>
