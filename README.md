@@ -1,2 +1,2 @@
 # CodingChallenge
-files are in the enrollment portal folder
+files are in the enrollment-portal folder
